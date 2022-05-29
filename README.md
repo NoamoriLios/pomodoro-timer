@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# Pomodoro timer app
+Technika Pomodoro je druh metody organizace času, která využívá časovače k rozdělení úkolu na části tradičně 25 minut dlouhé a oddělené krátkými přestávkami. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+V této aplikaci může uživatel sám ovládat čas práce a přestávek, psat todo poznámky a v případě potřeby aktualizovat svůj časovač a zapnout Lo-Fi skladbu na pozadí pro soustředěnou práci.
 
-## Available Scripts
+Aplikace byla implementována pomocí knihovny React.
 
-In the project directory, you can run:
+# Použité kategorie
 
-### `npm start`
+Použitá svg grafika s nastavenými událostmi: 
+```html
+<svg onClick={playSound} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" 
+    clipRule="evenodd" />
+</svg>
+```
+Media prvky při zapínání a vypínání časovače a při zapinání hudby:
+```js
+const [audio] = useState(new Audio(url));
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+useEffect(() => {
+        if (playing) {
+            audio.volume = 0.05;
+            audio.loop = true
+            audio.play();
+        } else {
+            audio.pause(); }
+        },
+        [audio, playing]
+    );
+    ...
+}
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Formulařové prvky:
+```html
+<form id='newTodoForm' onSubmit={handleSubmit}>
+    <input value={userInput} type="text" onChange={handleChange} autoFocus required placeholder="Enter task..."/>
+</form>
+```
+Css transformace, transitions a vendor prefixy:
+```css
+.reload {
+  width: 60px;
+  height: 60px;
+  transform: rotate(360deg);
+  -webkit-transition: transform 0.5s;
+  -ms-transition: transform 0.5s;
+  -moz-transition: transform 0.5s;
+  transition: transform 0.5s;
+}
 
-### `npm test`
+.reload:active {
+  transform: rotate(0deg);
+  transition: 0s;
+  -webkit-transition: transform 0s;
+  -ms-transition: transform 0s;
+  -moz-transition: transform 0s;
+}
+```
+Media queries:
+```css
+@media only screen and (max-width: 600px){
+  main {
+    padding-top: 10px;
+  }
+  .main_content {
+    display: inline-block;
+    justify-content: center;
+    padding: 20px;
+  }
+  ...
+}
+```
+Historie - aplikace je implementována v rámci jedné stránky a neprovádí navigaci po stránkách.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+JS API Localstorage
+```js
+const [todos, setTodos] = useState(() => {
+   const savedTodos = localStorage.getItem("todos");
+   return savedTodos ? JSON.parse(savedTodos) :  tasks;
+});
 
-### `npm run build`
+useEffect(() => {
+   localStorage.setItem("todos", JSON.stringify(todos))
+}, [todos])
+...
+```
+Offline aplikace - naimplementováno pomocí service-worker:
+```js
+serviceWorker.register();
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
