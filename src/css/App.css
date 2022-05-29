@@ -1,0 +1,129 @@
+main {
+  padding-top: 50px;
+  text-align: center;
+}
+
+body {
+  background-image: url('../img/bg.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+}
+
+button {
+  background-color: transparent;
+  color: white;
+  border: 0;
+  width: 100px;
+  cursor: pointer;;
+}
+
+button.with-text {
+  width: auto;
+  background-color: rgba(250, 235, 215, 0.1);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  line-height: 36px;
+  margin: 8px;
+}
+
+button.with-text:hover {
+  background-color: rgba(255, 255, 255, 0.23);
+}
+
+button.with-text svg {
+  width: 36px;
+  float: left;
+  margin-right: 6px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-transform: capitalize;
+}
+
+.main_content {
+  background: rgba(88, 51, 124, 0.5);
+  text-shadow: red;
+  border-radius: 15px;
+  box-shadow: 10px 10px 1px rgba(80, 18, 114, 0.5);
+  padding: 30px 100px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right_content {
+  margin-left: 10%;
+}
+
+.reload {
+  width: 60px;
+  height: 60px;
+  transform: rotate(360deg);
+  -webkit-transition: transform 0.5s;
+  -ms-transition: transform 0.5s;
+  -moz-transition: transform 0.5s;
+  transition: transform 0.5s;
+}
+
+.reload:active {
+  transform: rotate(0deg);
+  transition: 0s;
+  -webkit-transition: transform 0s;
+  -ms-transition: transform 0s;
+  -moz-transition: transform 0s;
+}
+
+.settings_buttons, .timer_buttons, .todo_buttons {
+  display: flex;
+  justify-content: center;
+}
+
+
+.timer_buttons {
+  align-items: center;
+}
+
+.CircularProgressbar {
+  width: 380px;
+  height: 380px;
+}
+
+.player {
+  padding-right: 20px;
+  display: flex;
+  justify-content: end;
+}
+
+.music_button {
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+}
+
+.todo_elements {
+  margin: 20px 0;
+  max-height: 200px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #58337c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b36dd0;
+}
