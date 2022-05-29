@@ -8,11 +8,7 @@ function Tasks() {
 
     const [todos, setTodos] = useState(() => {
         const savedTodos = localStorage.getItem("todos");
-        if (savedTodos) {
-            return JSON.parse(savedTodos);
-        } else {
-            return tasks;
-        }
+        return savedTodos ? JSON.parse(savedTodos) :  tasks;
     });
 
     useEffect(() => {
