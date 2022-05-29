@@ -106,12 +106,6 @@ label {
   padding: 10px;
 }
 
-.todo_elements {
-  margin: 20px 0;
-  max-height: 200px;
-  overflow: auto;
-}
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -126,4 +120,24 @@ label {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b36dd0;
+}
+
+@media only screen and (max-width: 600px){
+  main {
+    padding-top: 10px;
+  }
+  .main_content {
+    display: inline-block;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .CircularProgressbar {
+    width: 200px;
+    height: 200px;
+  }
+
+  .right_content {
+    margin: 0;
+  }
 }
