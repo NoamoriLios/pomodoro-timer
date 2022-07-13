@@ -5,6 +5,8 @@ V této aplikaci může uživatel sám ovládat čas práce a přestávek, psat 
 
 Aplikace byla implementována pomocí knihovny React.
 
+https://noamorilios.github.io/pomodoro-timer/ 
+
 # Použité kategorie
 
 Použitá svg grafika s nastavenými událostmi: 
